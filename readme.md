@@ -163,6 +163,13 @@ maze_walls[6][1]["W"] = True
 
 ---
 
+### Future Improvements
+
+- Use one loop to explore all maze including one with false wall
+- Compare A* algorithm to other algorithms 
+
+---
+
 ### References
 
 - [**Readme**](https://getmarkon.com)
