@@ -175,5 +175,3 @@ maze_walls[6][1]["W"] = True
 - [**Using Example Python Projects in VEXcode VR**](https://kb.vex.com/hc/en-us/articles/360052385852-Using-Example-Python-Projects-in-VEXcode-VR)
 - [**Vex Vr 8 - Dynamic Wall Maze**](https://www.youtube.com/watch?v=xh4l72Lf8W0)
 ---
-
-_Happy writing with markon!_ ✨
