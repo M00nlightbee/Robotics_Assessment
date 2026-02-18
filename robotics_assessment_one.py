@@ -51,10 +51,6 @@ maze_grid = [[0 for _ in range(8)] for _ in range(8)]
 maze_walls = [[{"N": False, "E": False, "S": False, "W": False}
                for _ in range(8)] for _ in range(8)]
 
-# # Create a wall between (6,0) and (6,1)
-# maze_walls[6][0]["E"] = True
-# maze_walls[6][1]["W"] = True
-
 # ------------------------------------------
 #  Update the position and heading
 # ------------------------------------------
@@ -84,7 +80,6 @@ def update_maze_list():
 
     # Detect front wall
     if front_distance.get_distance(MM) < 250:
-        # heading = int(drivetrain.heading(DEGREES)) % 360
         if heading == 0:   # North
             maze_walls[row][col]["N"] = True
             if row < 7:
@@ -302,7 +297,7 @@ def main():
         directions = {0: "N", 90: "E", 180: "S", 270: "W"}
         facing = directions.get(heading, "N")
         
-        # left-wall following to explore and map the entire maze first
+        # right-wall following to explore and map the entire maze first
         if onStart == True and front_distance.get_distance(MM) >= 3000:
             drivetrain.turn_for(RIGHT, 90, DEGREES)
         elif onFinish == True and front_distance.get_distance(MM) >= 3000:
@@ -346,7 +341,7 @@ def main():
     #     directions = {0: "N", 90: "E", 180: "S", 270: "W"}
     #     facing = directions.get(heading, "N")
         
-    #     # left-wall following to explore and map the entire maze first
+    #     # right-wall following to explore and map the entire maze first
     #     if onStart == True and front_distance.get_distance(MM) >= 3000:
     #         drivetrain.turn_for(RIGHT, 90, DEGREES)
     #     elif onFinish == True and front_distance.get_distance(MM) >= 3000:
@@ -414,11 +409,6 @@ def main():
     refresh_status()
         
     brain.print("\n=== PATH HISTORY (X, Y, Heading) ===\n")
-    # for step in path_history:
-    #     # Rounds coordinates to 1 decimal place 
-    #     clean_step = [round(step[0], 1), round(step[1], 1), int(step[2])]
-    #     brain.print(str(clean_step) + "\n")
-    #     wait(5, MSEC)
     
     for step in path_history:
         brain.print(str(step) + "\n")
@@ -428,7 +418,7 @@ def main():
     # Drive quickest route to the finish
     drive_quickest_route(FINISH_TILE)
     brain.print("\nEscaped the maze by the fastest possible route\n")
-    wait(1, SECONDS)
+    wait(2, SECONDS)
 
     refresh_status()
     update_maze_list()
