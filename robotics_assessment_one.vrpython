@@ -80,7 +80,7 @@ def update_maze_list():
 
     # Detect front wall
     if front_distance.get_distance(MM) < 250:
-
+        # heading = int(drivetrain.heading(DEGREES)) % 360
         if heading == 0:   # North
             maze_walls[row][col]["N"] = True
             if row < 7:
@@ -97,23 +97,6 @@ def update_maze_list():
             maze_walls[row][col]["W"] = True
             if col > 0:
                 maze_walls[row][col-1]["E"] = True
-    else:
-        if heading == 0:   # North
-            maze_walls[row][col]["N"] = False
-            if row < 7:
-                maze_walls[row+1][col]["S"] = False
-        elif heading == 90:  # East
-            maze_walls[row][col]["E"] = False
-            if col < 7:
-                maze_walls[row][col+1]["W"] = False
-        elif heading == 180:  # South
-            maze_walls[row][col]["S"] = False
-            if row > 0:
-                maze_walls[row-1][col]["N"] = False
-        elif heading == 270:  # West
-            maze_walls[row][col]["W"] = False
-            if col > 0:
-                maze_walls[row][col-1]["E"] = False
 
     return row, col, heading
 
@@ -169,15 +152,17 @@ def display_data():
         line += "+"
         brain.print(line + "\n")
 
-        # ---- Print Cell Contents + Vertical Walls ----#
+        # ---- Print Cell Info + Vertical Walls ----#
         line = ""
         for c in range(8):
 
+            # Left Boundary
             if maze_walls[r][c]["W"]:
                 line += "|"
             else:
                 line += " "
 
+            # Cell Info
             if (r, c) == (row, col):
                 line += " R "
             elif (r, c) == START_TILE:
@@ -189,6 +174,7 @@ def display_data():
             else:
                 line += "   "
 
+        # Right Boundary
         if maze_walls[r][7]["E"]:
             line += "|"
         else:
@@ -199,9 +185,14 @@ def display_data():
     # ---- Bottom Border ----#
     line = ""
     for c in range(8):
-        line += "+---"
+        line += "+"
+        if maze_walls[0][c]["S"]:
+            line += "---"
+        else:
+            line += "   "
     line += "+"
     brain.print(line + "\n")
+
 
     wait(3, MSEC)
 
@@ -283,12 +274,14 @@ def drive_quickest_route(target_tile):
 #   Main
 # ------------------------------------------
 def main():
-    drivetrain.set_drive_velocity(200, PERCENT)
-    drivetrain.set_turn_velocity(100, PERCENT)
+    drivetrain.set_drive_velocity(300, PERCENT)
+    drivetrain.set_turn_velocity(150, PERCENT)
     onStart = True
     onFinish = False
 
     current_count = visited_count()
+
+    brain.print("Maze exploration and mapping..... \n")
 
     # For maze with no false walls 
     while current_count < 64:
@@ -296,8 +289,8 @@ def main():
         row, col, heading = update_maze_list()
 
         directions = {0: "N", 90: "E", 180: "S", 270: "W"}
-        facing = directions.get(heading, "N")
-        
+        facing = directions.get(heading, "N")    
+
         # right-wall following to explore and map the entire maze first
         if onStart == True and front_distance.get_distance(MM) >= 3000:
             drivetrain.turn_for(RIGHT, 90, DEGREES)
@@ -328,7 +321,7 @@ def main():
 
     # Uncomment the code below to use for the map with a false wall
 
-    # # False wall:
+    # False wall:
     # while current_count < 64:
     #     refresh_status()
     #     # Get row, col AND the current heading from your updated function
@@ -371,12 +364,6 @@ def main():
     #     current_count = visited_count()
     #     wait(5,MSEC)
 
-    brain.clear()
-    # Prints the final map
-    brain.print("=== FINAL MOVEMENT MAPPING ===\n\n")
-    display_data() 
-    wait(2, SECONDS)
-
     # Return to the start coordinate, to reset the robot position before travelling the quickest route
     while not onStart:  
         refresh_status()  
@@ -406,9 +393,14 @@ def main():
         
         wait(5,MSEC)
     wait(2, SECONDS)
+    
+    # Prints the final map
+    brain.print("=== FINAL MOVEMENT MAPPING ===\n\n")
+    display_data() 
+    wait(2, SECONDS)
 
     refresh_status()
-        
+
     brain.print("\n=== PATH HISTORY (X, Y, Heading) ===\n")
     
     for step in path_history:
@@ -417,9 +409,12 @@ def main():
     
     brain.print("\n=== A* SHORTEST PATH ===\n")
     # Drive quickest route to the finish
+    brain.print("\nRobot driving to escape the maze using the quickest route......\n")
     drive_quickest_route(FINISH_TILE)
     brain.print("\nEscaped the maze by the fastest possible route\n")
     wait(2, SECONDS)
+
+    brain.print("\nRobot returning back to start......\n")
 
     refresh_status()
     update_maze_list()
@@ -428,7 +423,9 @@ def main():
     drive_quickest_route(START_TILE)
     brain.print("\nReturned to Start safely.\n")
 
-    wait(1, SECONDS)
+    wait(20, SECONDS)
+
+    brain.clear()
 
 # VR threads
 vr_thread(main)

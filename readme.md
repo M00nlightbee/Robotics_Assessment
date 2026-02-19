@@ -170,16 +170,25 @@ maze_walls[6][1]["W"] = True
 
 ---
 
+### Setup
+
+1. Open [**VEXcode Playground**](https://vr.vex.com/)
+2. Click on file and choose **New Text Project**
+3. Choose the **Dynamic Wall Maze** playground
+4. Copy and paste code 
+5. Then click start to run the code
+
 ### References
 
-- [**Readme**](https://getmarkon.com)
-- [**Maze Runner - Shortest Path Algorithms**](https://www.kaggle.com/code/mexwell/maze-runner-shortest-path-algorithms#Introduction)
-- [**A-Star (A\*) Search for Solving a Maze using Python (with visualization)**](https://levelup.gitconnected.com/a-star-a-search-for-solving-a-maze-using-python-with-visualization-b0cae1c3ba92)
-- [**The A\* Algorithm: A Complete Guide**](https://www.datacamp.com/tutorial/a-star-algorithm)
 - [**Unit 2 - Moving Your Robot**](https://education.vex.com/stemlabs/cs/cs-level-1-vexcode-vr-python/moving-your-robot/introduction)
 - [**Unit 4 - Navigating a Maze**](https://education.vex.com/stemlabs/cs/cs-level-1-vexcode-vr-python/navigating-a-maze/introduction)
 - [**Unit 5 - Detecting Walls from a Distance**](https://education.vex.com/stemlabs/cs/cs-level-1-vexcode-vr-python/detecting-walls-from-a-distance/introduction)
 - [**Using Example Python Projects in VEXcode VR**](https://kb.vex.com/hc/en-us/articles/360052385852-Using-Example-Python-Projects-in-VEXcode-VR)
 - [**Vex Vr 8 - Dynamic Wall Maze**](https://www.youtube.com/watch?v=xh4l72Lf8W0)
 - [**Coordinate-System-in-VEXcode**](https://kb.vex.com/hc/en-us/articles/360041366072-Understanding-the-Coordinate-System-in-VEXcode-VR#directions-header-4https://kb.vex.com/hc/en-us/articles/360041366072-Understanding-the-Coordinate-System-in-VEXcode-VR#directions-header-4)
+- [**Maze Runner - Shortest Path Algorithms**](https://www.kaggle.com/code/mexwell/maze-runner-shortest-path-algorithms#Introduction)
+- [**A-Star (A\*) Search for Solving a Maze using Python (with visualization)**](https://levelup.gitconnected.com/a-star-a-search-for-solving-a-maze-using-python-with-visualization-b0cae1c3ba92)
+- [**The A\* Algorithm: A Complete Guide**](https://www.datacamp.com/tutorial/a-star-algorithm)
+- [**Readme**](https://getmarkon.com)
+
 ---
