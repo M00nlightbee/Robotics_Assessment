@@ -178,6 +178,8 @@ maze_walls[6][1]["W"] = True
 4. Copy and paste code 
 5. Then click start to run the code
 
+---
+
 ### References
 
 - [**Unit 2 - Moving Your Robot**](https://education.vex.com/stemlabs/cs/cs-level-1-vexcode-vr-python/moving-your-robot/introduction)
