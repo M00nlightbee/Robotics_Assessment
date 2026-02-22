@@ -2,6 +2,9 @@
 
 ## Assignment Title: A mouse in a maze
 
+All aspects of the activity are human generated, created, edited, and developed.
+This submission aligns with AITS 1 of the Artificial Intelligence Transparency Scale (AITS).
+
 ---
 
 ## Project Overview
@@ -140,6 +143,9 @@ To handle the maze that has a false wall , a manual wall is created within the w
 <div align="center">
   <img src="false_wall.png" alt="False Wall Map" width="700"height="500"/>
 </div>
+
+> [!CAUTION]
+> To move the robot in the maze with the false wall you must include:
 
 ```python
 # Create a wall between (6,0) and (6,1)
